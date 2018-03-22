@@ -56,7 +56,7 @@ output_netcdf_file = "discharge_dailyTot_output_" + start_years[0] + "-" + end_y
 # cdo command for merging
 cmd = \
 'cdo -L -f nc4 -z zip -mergetime '
-for i in range(0, len(start_years) - 1):
+for i in range(0, len(start_years)):
 	cmd = cmd + '-selyear,' + start_years[i] + "/" + end_years[i] + " " + netcdf_file_names[i] + " "
 cmd = cmd + output_netcdf_file
 print(cmd)
