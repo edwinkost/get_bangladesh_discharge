@@ -57,9 +57,9 @@ output_netcdf_file = "discharge_dailyTot_output_" + start_years[0] + "-" + end_y
 cmd = \
 'cdo -L -f nc4 -z zip -mergetime '
 for i in range(0, len(start_years) - 1):
-	cmd += '-selyear,' + start_years[0] + "/" + end_years[0] + " " + netcdf_file_names[0] + " " +\
-	cmd += '-selyear,' + start_years[1] + "/" + end_years[1] + " " + netcdf_file_names[1] + " " +\
-	cmd += '-selyear,' + start_years[2] + "/" + end_years[2] + " " + netcdf_file_names[2] + " "
-cmd += output_netcdf_file
+	cmd = cmd + '-selyear,' + start_years[0] + "/" + end_years[0] + " " + netcdf_file_names[0] + " " +\
+	cmd = cmd + '-selyear,' + start_years[1] + "/" + end_years[1] + " " + netcdf_file_names[1] + " " +\
+	cmd = cmd + '-selyear,' + start_years[2] + "/" + end_years[2] + " " + netcdf_file_names[2] + " "
+cmd = cmd + output_netcdf_file
 print(cmd)
 os.system(cmd)
