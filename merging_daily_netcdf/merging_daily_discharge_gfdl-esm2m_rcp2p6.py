@@ -37,8 +37,11 @@ rcp_folder_location        + "/continue_from_2079/" + clone_code + "/netcdf/disc
 ]
 
 # time period for each netcdf file
-start_years = ['1951', '1958', '1988', '1990', '2006', '2011', '2017', '2048', '2079']
-end_years   = ['1957', '1987', '1989', '2005', '2010', '2016', '2047', '2078', '2099']
+start_years = [1951, 1958, 1988, 1990, 2006, 2011, 2017, 2048, 2079]
+end_years = []
+for i in range(0, len(start_years)-1):
+    end_years.append(start_years[i+1] - 1)
+end_years.append(2099)
 
 # output folder
 output_folder = "/scratch-shared/edwinhs/daily_discharge_aqueduct_flood_analyzer/m17/gfdl-esm2m/rcp2p6/"
@@ -51,13 +54,14 @@ except:
 os.chdir(output_folder)
 
 # output netcdf file
-output_netcdf_file = "discharge_dailyTot_output_" + start_years[0] + "-" + end_years[len(end_years)-1] + ".nc4"
+output_netcdf_file = "discharge_dailyTot_output_" + str(start_years[0]) + "-" + str(end_years[len(end_years)-1]) + ".nc4"
 
 # cdo command for merging
-cmd = \
-'cdo -L -f nc4 -z zip -mergetime '
+cmd = 'cdo -L -f nc4 -z zip -mergetime '
 for i in range(0, len(start_years)):
-	cmd = cmd + '-selyear,' + start_years[i] + "/" + end_years[i] + " " + netcdf_file_names[i] + " "
+	cmd = cmd + '-selyear,' + str(start_years[i]) + "/" + str(end_years[i]) + " " + netcdf_file_names[i] + " "
 cmd = cmd + output_netcdf_file
 print(cmd)
 os.system(cmd)
+
+# Note that the total number of timesteps/days between 1951 and 2099 must be 54422. 

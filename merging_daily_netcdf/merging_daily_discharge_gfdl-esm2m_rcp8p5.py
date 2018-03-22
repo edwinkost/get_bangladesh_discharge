@@ -61,10 +61,11 @@ os.chdir(output_folder)
 output_netcdf_file = "discharge_dailyTot_output_" + str(start_years[0]) + "-" + str(end_years[len(end_years)-1]) + ".nc4"
 
 # cdo command for merging
-cmd = \
-'cdo -L -f nc4 -z zip -mergetime '
+cmd = 'cdo -L -f nc4 -z zip -mergetime '
 for i in range(0, len(start_years)):
 	cmd = cmd + '-selyear,' + str(start_years[i]) + "/" + str(end_years[i]) + " " + netcdf_file_names[i] + " "
 cmd = cmd + output_netcdf_file
 print(cmd)
 os.system(cmd)
+
+# Note that the total number of timesteps/days between 1951 and 2099 must be 54422. 
