@@ -35,13 +35,11 @@ rcp_folder_location        + "/continue_from_2098/" + clone_code + "/netcdf/disc
 # time period for each netcdf file
 start_years = [1951,\
                1960,\
-               1984,\
+               1990,\
                2006,\
-               2030,\
-               2031,\
-               2033,\
-               2053,\
-               2084,\
+               2037,\
+               2067,\
+               2098,\
                ]
 end_years = []
 for i in range(0, len(start_years)-1):
