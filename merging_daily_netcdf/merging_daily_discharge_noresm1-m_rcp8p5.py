@@ -14,13 +14,13 @@ historical_folder_location = "/projects/0/aqueduct/users/edwinsut/pcrglobwb_runs
 
 rcp_folder_location = "/projects/0/aqueduct/users/edwinsut/pcrglobwb_runs_2016_oct_nov/pcrglobwb_4_land_covers_edwin_parameter_set_noresm1-m/no_correction/rcp8p5/"
 
-edwinhs@fcn1.bullx:/projects/0/aqueduct/users/edwinsut/pcrglobwb_runs_2016_oct_nov/pcrglobwb_4_land_covers_edwin_parameter_set_noresm1-m/no_correction/rcp8p5$ ls -lah */M17/netcdf/discharge_dailyTot_output.nc
--r-xr-xr-x 1 edwinsut aqueduct 2.0G Nov  7  2016    begin_from_2006/M17/netcdf/discharge_dailyTot_output.nc
--r-xr-xr-x 1 edwinsut aqueduct 596M Nov  8  2016 continue_from_2025/M17/netcdf/discharge_dailyTot_output.nc
--r-xr-xr-x 1 edwinsut aqueduct 289M Nov 16  2016 continue_from_2031/M17/netcdf/discharge_dailyTot_output.nc
--r--r--r-- 1 edwinsut aqueduct 2.1G Dec 29  2016 continue_from_2033/M17/netcdf/discharge_dailyTot_output.nc
--r--r--r-- 1 edwinsut aqueduct 3.1G Dec 29  2016 continue_from_2053/M17/netcdf/discharge_dailyTot_output.nc
--r--r--r-- 1 edwinsut aqueduct 1.6G Dec 29  2016 continue_from_2084/M17/netcdf/discharge_dailyTot_output.nc
+#~ edwinhs@fcn1.bullx:/projects/0/aqueduct/users/edwinsut/pcrglobwb_runs_2016_oct_nov/pcrglobwb_4_land_covers_edwin_parameter_set_noresm1-m/no_correction/rcp8p5$ ls -lah */M17/netcdf/discharge_dailyTot_output.nc
+#~ -r-xr-xr-x 1 edwinsut aqueduct 2.0G Nov  7  2016    begin_from_2006/M17/netcdf/discharge_dailyTot_output.nc
+#~ -r-xr-xr-x 1 edwinsut aqueduct 596M Nov  8  2016 continue_from_2025/M17/netcdf/discharge_dailyTot_output.nc
+#~ -r-xr-xr-x 1 edwinsut aqueduct 289M Nov 16  2016 continue_from_2031/M17/netcdf/discharge_dailyTot_output.nc
+#~ -r--r--r-- 1 edwinsut aqueduct 2.1G Dec 29  2016 continue_from_2033/M17/netcdf/discharge_dailyTot_output.nc
+#~ -r--r--r-- 1 edwinsut aqueduct 3.1G Dec 29  2016 continue_from_2053/M17/netcdf/discharge_dailyTot_output.nc
+#~ -r--r--r-- 1 edwinsut aqueduct 1.6G Dec 29  2016 continue_from_2084/M17/netcdf/discharge_dailyTot_output.nc
 
 # names of netcdf files that will be merged
 netcdf_file_names = \
