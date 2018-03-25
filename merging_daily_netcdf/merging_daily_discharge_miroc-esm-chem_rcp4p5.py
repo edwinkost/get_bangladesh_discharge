@@ -55,7 +55,7 @@ end_years.append(2099)
 # output folder
 output_folder = "/scratch-shared/edwinhs/daily_discharge_aqueduct_flood_analyzer/m17/miroc-esm-chem/rcp4p5/"
 # - make and go to the output folder
-os.system('rm -r ' + output_folder + "/*")
+#~ os.system('rm -r ' + output_folder + "/*")
 try:
 	os.makedirs(output_folder)
 except:
