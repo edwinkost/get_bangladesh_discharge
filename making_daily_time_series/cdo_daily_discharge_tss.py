@@ -143,7 +143,7 @@ for i_rcp in range(0, len(rcp_codes)):
             
             # cdo command
             #~ cdo outputtab,date,lon,lat,value -remapnn,lon=89.625_lat=25.0417 /scratch-shared/edwinhs/daily_discharge_aqueduct_flood_analyzer/m17/watch/historical_baseline/*annuaAvg*.nc > watch_BD_BRAHMAPUTRA_2651100_BAHADURABAD_table.txt
-            cmd += " cdo outputtab,date,lon,lat,value -remapnn,lon=" + str(lon) + "_lat=" + str(lat) + " " + netcdf_input_file + " > " + rcp_code +"_" + gcm_small_name + "_" + station_id + "_table.txt & "
+            cmd += " cdo outputtab,date,lon,lat,value -remapnn,lon=" + str(lon) + "_lat=" + str(lat) + " " + netcdf_input_file + " > " + rcp +"_" + gcm_small_name + "_" + station_id + "_table.txt & "
 
         cmd += " wait "
         print(cmd)
