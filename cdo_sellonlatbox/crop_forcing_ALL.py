@@ -6,7 +6,7 @@ import os
 main_input_folder = "/projects/0/dfguu/data/hydroworld/forcing/CMIP5/ISI-MIP-INPUT"
 
 rcp_codes = ["2p6", "4p5", "6p0", "8p5"]
-#~ rcp_codes = ["2p6"]
+rcp_codes = ["2p6"]
 
 gcm_names       = ["GFDL-ESM2M", "HadGEM2-ES", "IPSL-CM5A-LR", "MIROC-ESM-CHEM", "NorESM1-M"]
 gcm_small_names = ["gfdl-esm2m", "hadgem2-es", "ipsl-cm5a-lr", "miroc-esm-chem", "noresm1-m"]
@@ -19,7 +19,7 @@ variable_names  = ["epot", "pr", "tas"]
 sellonlatbox_coordinates = "87,95,20,28"
 
 # main output folder
-main_output_folder = "/scratch-shared/edwin/forcing/netcdf/"
+main_output_folder = "/scratch-shared/edwin/data_for_tamim/forcing/netcdf/"
 
 
 for rcp in rcp_codes:
@@ -29,7 +29,7 @@ for rcp in rcp_codes:
         gcm_small_name = gcm_small_names[i_gcm]
 
         # output folder
-        output_folder = "/scratch-shared/edwin/forcing/netcdf/" + rcp + "/" + gcm_small_name + "/"
+        output_folder = "/scratch-shared/edwin/forcing/netcdf/" + "rcp" + rcp + "/" + gcm_small_name + "/"
         os.system('rm -r ' + output_folder + "/*")
         try:
 		    os.makedirs(output_folder)
