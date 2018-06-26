@@ -19,7 +19,7 @@ variable_names  = ["epot", "pr", "tas"]
 sellonlatbox_coordinates = "87,95,20,28"
 
 # main output folder
-main_output_folder = "/scratch-shared/edwin/forcing/netcdf/"
+main_output_folder = "/scratch-shared/edwin/data_for_tamim/forcing/netcdf/"
 
 
 for rcp in rcp_codes:
@@ -29,7 +29,7 @@ for rcp in rcp_codes:
         gcm_small_name = gcm_small_names[i_gcm]
 
         # output folder
-        output_folder = "/scratch-shared/edwin/forcing/netcdf/" + rcp + "/" + gcm_small_name + "/"
+        output_folder = "/scratch-shared/edwin/forcing/netcdf/" + "rcp" + rcp + "/" + gcm_small_name + "/"
         os.system('rm -r ' + output_folder + "/*")
         try:
 		    os.makedirs(output_folder)
