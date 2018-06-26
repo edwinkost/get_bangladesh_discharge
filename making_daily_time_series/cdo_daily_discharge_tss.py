@@ -138,8 +138,8 @@ for i_rcp in range(0, len(rcp_codes)):
         for i_station in range(0, len(station_ids)):
 			
             station_id = station_ids[i_station]
-            lat = station_latitudes[i_station]
-            lon = station_latitudes[i_station]
+            lat =  station_latitudes[i_station]
+            lon = station_longitudes[i_station]
             
             # cdo command
             #~ cdo outputtab,date,lon,lat,value -remapnn,lon=89.625_lat=25.0417 /scratch-shared/edwinhs/daily_discharge_aqueduct_flood_analyzer/m17/watch/historical_baseline/*annuaAvg*.nc > watch_BD_BRAHMAPUTRA_2651100_BAHADURABAD_table.txt
