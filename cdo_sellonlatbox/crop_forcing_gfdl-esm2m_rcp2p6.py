@@ -25,8 +25,8 @@ main_output_folder = "/scratch-shared/edwin/forcing/netcdf/"
 for rcp in rcp_codes:
 
     for i_gcm in range(0, len(gcm_names)):
-        gcm_name = gcm_name[i_gcm]
-        gcm_small_name = gcm_small_name[i_gcm]
+        gcm_name = gcm_names[i_gcm]
+        gcm_small_name = gcm_small_names[i_gcm]
 
         # output folder
         output_folder = "/scratch-shared/edwin/forcing/netcdf/" + rcp + "/" + gcm_small_name + "/"
