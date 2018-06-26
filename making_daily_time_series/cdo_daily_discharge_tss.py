@@ -118,6 +118,8 @@ for i_rcp in range(0, len(rcp_codes)):
     
     for i_gcm in range(0, len(gcm_small_names)):
 
+        gcm_small_name = gcm_small_names[i_gcm]
+        
         # output folder
         output_folder = main_output_folder + rcp + "/" + gcm_small_name + "/"
         os.system('rm -r ' + output_folder + "/*")
