@@ -6,12 +6,12 @@ import os
 main_input_folder = "/scratch-shared/edwin/data_for_tamim/forcing/netcdf/"
 
 rcp_codes = ["2p6", "4p5", "6p0", "8p5", "historical_baseline"]
-#~ rcp_codes = ["2p6"]
+rcp_codes = ["2p6"]
 
 #~ gcm_names       = ["GFDL-ESM2M", "HadGEM2-ES", "IPSL-CM5A-LR", "MIROC-ESM-CHEM", "NorESM1-M"]
 #~ gcm_names       = ["GFDL-ESM2M"]
 gcm_small_names    = ["gfdl-esm2m", "hadgem2-es", "ipsl-cm5a-lr", "miroc-esm-chem", "noresm1-m"]
-#~ gcm_small_names = ["gfdl-esm2m"]
+gcm_small_names = ["gfdl-esm2m"]
 
 variable_names  = ["epot", "pr", "tas"]
 
@@ -417,15 +417,15 @@ for i_rcp in range(0, len(rcp_codes)):
             for variable in variable_names:
 
                 # netcdf file name
-                # - example: "/scratch-shared/edwinhs/daily_discharge_aqueduct_flood_analyzer/m17/gfdl-esm2m/rcp8p5/discharge_dailyTot_output_1951-2099.nc4" 
-                netcdf_input_file = main_input_folder + "/" + gcm_small_name + "/" + rcp + "/" + variable + "*"
+                # - example: "/scratch-shared/edwin/data_for_tamim/forcing/netcdf/historical_baseline/watch/epot_watch_1958-2001.nc" 
+                netcdf_input_file = main_input_folder + "/" + rcp + "/" + gcm_small_name + "/" + variable + "*"
 
                 # cdo command
                 #~ cdo outputtab,date,lon,lat,value -remapnn,lon=89.625_lat=25.0417 /scratch-shared/edwinhs/daily_discharge_aqueduct_flood_analyzer/m17/watch/historical_baseline/*annuaAvg*.nc > watch_BD_BRAHMAPUTRA_2651100_BAHADURABAD_table.txt
-                cmd += " cdo outputtab,date,lon,lat,value -remapnn,lon=" + str(lon) + "_lat=" + str(lat) + " " + netcdf_input_file + " > " + rcp +"_" + gcm_small_name + "_" + station_id + "_table.txt & "
+                cmd += " cdo outputtab,date,lon,lat,value -remapnn,lon=" + str(lon) + "_lat=" + str(lat) + " " + netcdf_input_file + " > " + variable + "_" + rcp + "_" + gcm_small_name + "_" + station_id + "_table.txt & "
 
-        cmd += " wait "
-        print(cmd)
-        os.system(cmd)
+            cmd += " wait "
+            print(cmd)
+            os.system(cmd)
 
 # Note that the total number of timesteps/days between 1951 and 2099 must be 54422. 
