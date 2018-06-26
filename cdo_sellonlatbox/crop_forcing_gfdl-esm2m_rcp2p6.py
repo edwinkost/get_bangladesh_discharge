@@ -36,7 +36,7 @@ for rcp in rcp_codes:
 	        pass
         os.chdir(output_folder)
 
-		for variable in variable_names:
+        for variable in variable_names:
 			
 			# historical file name, example: NorESM1-M/pr_bced_1960-1999_noresm1-m_historical_1951-2005.nc
 			historical_file = main_input_folder + "/" + gcm_name + "/" + variable + "_bced_1960-1999_" + gcm_small_name + "_historical_1951-2005.nc"
