@@ -51,9 +51,9 @@ for rcp in rcp_codes:
             # cdo command for sellonlatbox
             # - example: cdo -L -f nc4 -z zip -mergetime -sellonlatbox,87,95,20,28 /projects/0/dfguu/data/hydroworld/forcing/CMIP5/ISI-MIP-INPUT/GFDL-ESM2M/tas_bced_1960-1999_gfdl-esm2m_historical_1951-2005.nc -sellonlatbox,87,95,20,28 /projects/0/dfguu/data/hydroworld/forcing/CMIP5/ISI-MIP-INPUT/GFDL-ESM2M/tas_bced_1960-1999_gfdl-esm2m_2p6_2006-2099.nc /scratch-shared/edwin/forcing/netcdf/2p6/gfdl-esm2m//tas_bced_1960-1999_gfdl-esm2m_2p6_1951-2099.nc
             # 
-            cmd  = ' cdo -L -f nc4 -z zip -mergetime '
-            cmd  = '-sellonlatbox,' + sellonlatbox_coordinates + ' ' + historical_file + ' '
-            cmd  = '-sellonlatbox,' + sellonlatbox_coordinates + ' ' + "rcp"+ rcp_file + ' '
+            cmd  = ' cdo -L -f nc4 -z zip -mergetime ' 
+            cmd += '-sellonlatbox,' + sellonlatbox_coordinates + ' ' + historical_file + ' '
+            cmd += '-sellonlatbox,' + sellonlatbox_coordinates + ' ' + "rcp"+ rcp_file + ' '
             cmd += output_file
             print(cmd)
             os.system(cmd)
