@@ -40,7 +40,7 @@ for rcp in rcp_codes:
         for variable in variable_names:
 			
             # historical file name, example: NorESM1-M/pr_bced_1960-1999_noresm1-m_historical_1951-2005.nc
-            historical_file = main_input_folder + "/" + gcm_name + "/" + variable + "_bced_1960*_" + gcm_small_name + "_hist_1951*.nc"
+            historical_file = main_input_folder + "/" + gcm_name + "/" + variable + "_bced_1960*_" + gcm_small_name + "_*1951*.nc"
             
             # rcp file name, example:       GFDL-ESM2M/epot_bced_1960_1999_gfdl-esm2m_6p0_2006-2099.nc
             rcp_file = main_input_folder + "/" + gcm_name + "/" + variable + "_bced_1960*_" + gcm_small_name + "_" + rcp + "_2006*.nc"
