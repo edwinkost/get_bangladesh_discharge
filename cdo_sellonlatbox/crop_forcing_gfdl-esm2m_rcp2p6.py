@@ -38,16 +38,16 @@ for rcp in rcp_codes:
 
         for variable in variable_names:
 			
-			# historical file name, example: NorESM1-M/pr_bced_1960-1999_noresm1-m_historical_1951-2005.nc
-			historical_file = main_input_folder + "/" + gcm_name + "/" + variable + "_bced_1960-1999_" + gcm_small_name + "_historical_1951-2005.nc"
-
-			# rcp file name, example:       GFDL-ESM2M/epot_bced_1960_1999_gfdl-esm2m_6p0_2006-2099.nc
-			rcp_file = main_input_folder + "/" + gcm_name + "/" + variable + "_bced_1960-1999_" + gcm_small_name + "_" + rcp + "_2006-2099.nc"
-			
-			# output file name
-			output_file = output_folder + "/" + variable + "_bced_1960-1999_" + gcm_small_name + "_" + rcp + "_1951-2099.nc"
-			
-			# cdo command for sellonlatbox
+            # historical file name, example: NorESM1-M/pr_bced_1960-1999_noresm1-m_historical_1951-2005.nc
+            historical_file = main_input_folder + "/" + gcm_name + "/" + variable + "_bced_1960-1999_" + gcm_small_name + "_historical_1951-2005.nc"
+            
+            # rcp file name, example:       GFDL-ESM2M/epot_bced_1960_1999_gfdl-esm2m_6p0_2006-2099.nc
+            rcp_file = main_input_folder + "/" + gcm_name + "/" + variable + "_bced_1960-1999_" + gcm_small_name + "_" + rcp + "_2006-2099.nc"
+            
+            # output file name
+            output_file = output_folder + "/" + variable + "_bced_1960-1999_" + gcm_small_name + "_" + rcp + "_1951-2099.nc"
+            
+            # cdo command for sellonlatbox
             cmd  = ' cdo -L -f nc4 -z zip sellonlatbox,' + sellonlatbox_coordinates + ' '
             cmd += '-mergetime ' + historical_file + ' ' + rcp_file_name + ' '
             cmd += output_netcdf_file
