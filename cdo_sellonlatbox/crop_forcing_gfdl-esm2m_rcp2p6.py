@@ -50,7 +50,7 @@ for rcp in rcp_codes:
             # cdo command for sellonlatbox
             cmd  = ' cdo -L -f nc4 -z zip sellonlatbox,' + sellonlatbox_coordinates + ' '
             cmd += '-mergetime ' + historical_file + ' ' + rcp_file + ' '
-            cmd += output_netcdf_file
+            cmd += output_file
             print(cmd)
             os.system(cmd)
 
