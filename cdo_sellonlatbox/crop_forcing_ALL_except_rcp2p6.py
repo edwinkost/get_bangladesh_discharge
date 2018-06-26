@@ -7,6 +7,7 @@ main_input_folder = "/projects/0/dfguu/data/hydroworld/forcing/CMIP5/ISI-MIP-INP
 
 rcp_codes = ["2p6", "4p5", "6p0", "8p5"]
 #~ rcp_codes = ["2p6"]
+rcp_codes = ["4p5", "6p0", "8p5"]
 
 gcm_names       = ["GFDL-ESM2M", "HadGEM2-ES", "IPSL-CM5A-LR", "MIROC-ESM-CHEM", "NorESM1-M"]
 gcm_small_names = ["gfdl-esm2m", "hadgem2-es", "ipsl-cm5a-lr", "miroc-esm-chem", "noresm1-m"]
