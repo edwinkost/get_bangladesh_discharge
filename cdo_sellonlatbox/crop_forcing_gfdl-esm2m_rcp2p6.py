@@ -48,8 +48,7 @@ for rcp in rcp_codes:
 			output_file = output_folder + "/" + variable + "_bced_1960-1999_" + gcm_small_name + "_" + rcp + "_1951-2099.nc"
 			
 			# cdo command for sellonlatbox
-            cmd  = '' 
-            cmd += ' cdo -L -f nc4 -z zip sellonlatbox,' + sellonlatbox_coordinates + ' '
+            cmd  = ' cdo -L -f nc4 -z zip sellonlatbox,' + sellonlatbox_coordinates + ' '
             cmd += '-mergetime ' + historical_file + ' ' + rcp_file_name + ' '
             cmd += output_netcdf_file
             print(cmd)
