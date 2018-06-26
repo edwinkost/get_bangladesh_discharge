@@ -131,7 +131,7 @@ for i_rcp in range(0, len(rcp_codes)):
 
         # netcdf file name
         # - example: "/scratch-shared/edwinhs/daily_discharge_aqueduct_flood_analyzer/m17/gfdl-esm2m/rcp8p5/discharge_dailyTot_output_1951-2099.nc4" 
-        netcdf_input_file = main_input_folder + "/" + rcp + "/discharge_dailyTot*"
+        netcdf_input_file = main_input_folder + "/" + rcp + "/" + gcm_small_name + "/discharge_dailyTot*"
         
         # command line
         cmd = " "
