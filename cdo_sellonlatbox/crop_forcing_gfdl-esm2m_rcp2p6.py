@@ -29,7 +29,7 @@ for rcp in rcp_codes:
         gcm_small_name = gcm_small_names[i_gcm]
 
         # output folder
-        output_folder = "/scratch-shared/edwin/forcing/netcdf/" + "rcp" + rcp + "/" + gcm_small_name + "/"
+        output_folder = main_output_folder + "/rcp" + rcp + "/" + gcm_small_name + "/"
         os.system('rm -r ' + output_folder + "/*")
         try:
 		    os.makedirs(output_folder)
