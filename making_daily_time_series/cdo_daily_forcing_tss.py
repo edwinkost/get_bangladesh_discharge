@@ -6,12 +6,12 @@ import os
 main_input_folder = "/scratch-shared/edwin/data_for_tamim/forcing/netcdf/"
 
 rcp_codes = ["2p6", "4p5", "6p0", "8p5", "historical_baseline"]
-rcp_codes = ["2p6"]
+#~ rcp_codes = ["2p6"]
 
 #~ gcm_names       = ["GFDL-ESM2M", "HadGEM2-ES", "IPSL-CM5A-LR", "MIROC-ESM-CHEM", "NorESM1-M"]
 #~ gcm_names       = ["GFDL-ESM2M"]
 gcm_small_names    = ["gfdl-esm2m", "hadgem2-es", "ipsl-cm5a-lr", "miroc-esm-chem", "noresm1-m"]
-gcm_small_names = ["gfdl-esm2m"]
+#~ gcm_small_names = ["gfdl-esm2m"]
 
 variable_names  = ["epot", "pr", "tas"]
 
