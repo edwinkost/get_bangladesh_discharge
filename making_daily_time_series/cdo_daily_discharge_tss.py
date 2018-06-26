@@ -135,7 +135,7 @@ for i_rcp in range(0, len(rcp_codes)):
         
         # command line
         cmd = " "
-        for i_station in station_ids:
+        for i_station in range(0, len(station_ids)):
 			
             station_id = station_ids[i_station]
             lat = station_latitudes[i_station]
