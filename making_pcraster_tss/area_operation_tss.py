@@ -8,10 +8,10 @@ import shutil
 import time
 import datetime
 
+import pcraster as pcr
 from pcraster.framework import DynamicModel
 from pcraster.framework import TimeoutputTimeseries
 
-import pcraster as pcr
 import numpy as np
 
 import virtualOS as vos
