@@ -13,6 +13,7 @@ import numpy as np
 import pcraster as pcr
 from pcraster.framework import DynamicModel
 from pcraster.framework import TimeoutputTimeseries
+from pcraster.framework import TimeoutputTimeseries as TimeoutputTimeseries2
 
 import virtualOS as vos
 
@@ -104,7 +105,7 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         # - daily tss reporting object
         self.tss_daily_reporting = TimeoutputTimeseries(self.tss_daily_output_file, self, self.area_class, noHeader = False)       
         # - 10day tss reporting object
-        self.tss_10day_reporting = TimeoutputTimeseries(self.tss_10day_output_file, self, self.area_class, noHeader = False)       
+        self.tss_10day_reporting = TimeoutputTimeseries2(self.tss_10day_output_file, self, self.area_class, noHeader = False)       
 
     def dynamic(self):
         
