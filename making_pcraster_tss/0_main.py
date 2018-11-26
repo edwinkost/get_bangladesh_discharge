@@ -43,8 +43,8 @@ unit_conversion_offset = 0.0
 output_folder = "/scratch-shared/edwinsut/tss_forcing_for_tamin/test/"
 
 # tss output files
-tss_daily_output_file = output_folder + "/" + "forcing_daily.tss"
-tss_10day_output_file = output_folder + "/" + "forcing_10day.tss"
+tss_daily_output_file = output_folder + "/" + "forcing_daily"
+tss_10day_output_file = output_folder + "/" + "forcing_10day"
 
 # catchment/class pcraster map
 # - the output clone will be based on this file
