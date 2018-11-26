@@ -77,10 +77,10 @@ def main():
     modelTime.getStartEndTimeSteps(startDate, endDate, nrOfTimeSteps)
     
     # calculation model/framework
-    calculationModel = AreaOperationNetcdfToPCRasterTSS(netcdf_input_file = netcdf_input_file
-                                                        areaMapFileName   = areaMapFileName
-                                                        netcdf_input_clone_map_file = netcdf_input_clone_map_file
-                                                        output_folder = 
+    calculationModel = AreaOperationNetcdfToPCRasterTSS(netcdf_input_file = netcdf_input_file, \
+                                                        areaMapFileName   = areaMapFileName. \
+                                                        netcdf_input_clone_map_file = netcdf_input_clone_map_file. \
+                                                        output_folder = output_folder, \
                                                         unit_conversion_factor = unit_conversion_factor, \
                                                         unit_conversion_offset = unit_conversion_offset, \
                                                         modelTime = modelTime, \
