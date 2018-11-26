@@ -74,7 +74,7 @@ def main():
     
     # time object
     modelTime = ModelTime() # timeStep info: year, month, day, doy, hour, etc
-    modelTime.getStartEndTimeSteps(startDate, endDate, nrOfTimeSteps)
+    modelTime.getStartEndTimeSteps(startDate, endDate)
     
     # calculation model/framework
     calculationModel = AreaOperationNetcdfToPCRasterTSS(netcdf_input_file = netcdf_input_file, \
