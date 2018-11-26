@@ -86,7 +86,7 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
 
         # objects for tss reporting
         # - choose a point for each area/class as its station representative
-        logger.debug("Get stations/representatives for each class")
+        logger.debug("Get stations/representatives for all classes")
         self.point_area_class = pcr.nominal(pcr.ifthen(pcr.areaorder(pcr.scalar(self.area_class), self.area_class) == 1, self.area_class))
         #
         #~ pcr.aguila(self.point_area_class)
@@ -130,8 +130,8 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         bound_box = self.x_min_output + " " + self.y_min_output + " " + self.x_max_output + " " + self.y_max_output    
         cell_size = self.cell_length + " " + self.cell_length
         cmd = 'gdalwarp '+\
-              '-s_srs ' + '"' + inputProjection  +'" '+\
-              '-t_srs ' + '"' + outputProjection +'" '+\
+              '-s_srs ' + '"' + self.inputProjection  +'" '+\
+              '-t_srs ' + '"' + self.outputProjection +'" '+\
               '-te ' + bound_box + " " +\
               '-tr ' + cell_size + " " +\
               '-r '+ self.resample_method + " " +\
