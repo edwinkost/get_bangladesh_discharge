@@ -97,7 +97,7 @@ def main():
                                                         )
     number_of_time_steps = modelTime.nrOfTimeSteps
     number_of_time_steps = 100
-    dynamic_framework = DynamicFramework(calculationModel, modelTime.nrOfTimeSteps)
+    dynamic_framework = DynamicFramework(calculationModel, number_of_time_steps)
     dynamic_framework.setQuiet(True)
     # - start the calculation
     dynamic_framework.run()
