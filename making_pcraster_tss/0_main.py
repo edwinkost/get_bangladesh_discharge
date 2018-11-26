@@ -92,7 +92,7 @@ def main():
                                                         tss_daily_output_file = tss_daily_output_file, \
                                                         tss_10day_output_file = tss_10day_output_file \
                                                         )
-    dynamic_framework = DynamicFramework(calculationModel, modelTime.nrOfTimeSteps)
+    dynamic_framework = DynamicFramework(calculationModel, 100)
     dynamic_framework.setQuiet(True)
     # - start the calculation
     dynamic_framework.run()
