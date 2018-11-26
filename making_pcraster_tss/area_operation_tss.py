@@ -176,15 +176,15 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         output_pcr = pcr.readmap(tmp_reprj_map_file)
         # - unit conversion
         output_pcr = output_pcr * self.unit_conversion_factor + self.unit_conversion_offset
-        pcr.aguila(output_pcr)
-        raw_input("Press Enter to continue...")
+        #~ pcr.aguila(output_pcr)
+        #~ raw_input("Press Enter to continue...")
         
         
         # perform area operation
         logger.info("Performing area operation.")
         output_area_pcr = pcr.areaaverage(output_pcr, self.area_class)
-        pcr.aguila(output_area_pcr)
-        raw_input("Press Enter to continue...")
+        #~ pcr.aguila(output_area_pcr)
+        #~ raw_input("Press Enter to continue...")
         
         # save it to a daily tss file
         logger.info("Saving daily value to a tss file.")
