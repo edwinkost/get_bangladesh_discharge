@@ -92,6 +92,7 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         self.modelTime.update(self.currentTimeStep())
 
         # read netcdf file
+        logger.info("Reading netcdf file.")
         # - set the clone to the necdf file extent
         pcr.setclone(self.inputClone)
         # - read netcdf file
@@ -104,6 +105,7 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
                                            specificFillValue = None)
         
         # reprojection
+        logger.info("Reprojection.")
         #
         # - save it to a pcraster file in the temporary folder
         tmp_input_pcr_file = self.tmpDir + "/" + "tmp_input_pcr.map"
