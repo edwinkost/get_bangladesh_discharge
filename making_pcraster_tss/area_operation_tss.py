@@ -8,8 +8,8 @@ import shutil
 import time
 import datetime
 
-#~ from pcraster.framework import DynamicModel
-from pcraster.framework import *
+from pcraster.framework import DynamicModel
+from pcraster.framework import TimeoutputTimeseries
 
 import pcraster as pcr
 import numpy as np
