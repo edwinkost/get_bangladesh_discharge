@@ -79,7 +79,9 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
 
         # objects for tss reporting
         # - choose a point for each area/class as its station representative
-        self.point_area_class = pcr.ifthen(pcr.areaorder(pcr.scalar(self.area_class), self.area_class) == 1, self.area_class)
+        self.point_area_class = pcr.nomimal(pcr.ifthen(pcr.areaorder(pcr.scalar(self.area_class), self.area_class) == 1, self.area_class))
+        pcr.aguila(self.point_area_class)
+        raw_input("Press Enter to continue...")
         # - daily tss reporting object
         self.tss_daily_reporting = TimeoutputTimeseries("test", self, self.area_class, noHeader = False)       
         # - 10day tss reporting object
