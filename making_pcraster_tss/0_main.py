@@ -32,7 +32,7 @@ netcdf_input_clone_map_file = "/home/edwinsut/github/edwinkost/get_bangladesh_di
 startDate = "1958-01-01"
 endDate   = "2001-12-31"
 # - testing
-startDate = "1990-01-01"
+startDate = "1990-06-01"
 endDate   = "2001-12-31"
 
 
