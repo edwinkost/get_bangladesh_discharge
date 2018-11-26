@@ -105,7 +105,7 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         # - daily tss reporting object
         self.tss_daily_reporting = TimeoutputTimeseries(self.tss_daily_output_file, self, self.area_class, noHeader = False)       
         # - 10day tss reporting object
-        self.tss_10day_reporting = TimeoutputTimeseries(self.tss_10day_output_file, self, self.area_class, noHeader = False)       
+        self.tss_tenday_reporting = TimeoutputTimeseries(self.tss_10day_output_file, self, self.area_class, noHeader = False)       
 
     def dynamic(self):
         
@@ -195,7 +195,7 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         else:
              average_per_ten_days = pcr.scalar(-9999.0)
         pcr.aguila(average_per_ten_days)
-        self.tss_10day_reporting(average_per_ten_days)
+        self.tss_tenday_reporting(average_per_ten_days)
         
         # clean the temporary folder
         cmd = 'rm -r ' + self.tmpDir + "/*" 
