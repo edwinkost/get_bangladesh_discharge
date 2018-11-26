@@ -38,13 +38,13 @@ endDate   = "2001-12-31"
 
 # unit conversion
 unit_conversion_factor = 86.4 * 1000.0
-unit_conversion_offset = 0.0
-# - Note that there are three INPUT forcing variables: pr (precipitation, unit: kg.m-2.s-1), epot (potential evaporation, unit: m/day), and tas (surface air temperatue, unit: K)
+unit_conversion_offset = 0.0            # for temperature (to Celcius), this will be -273.15
+# - Note that there are three INPUT forcing variables: pr (precipitation, unit: kg.m-2.s-1), epot (reference potential evaporation, unit: m/day), and tas (surface air temperatue, unit: K)
 # - Note that 1 kg.m-2.s-1 = 86.4 m.day-1, 
 # - The OUTPUT units should be mm.day-1 for pr, degree Celcius for tas, and mm.day-1 for epot. 
 
 # output folder
-output_folder = "/scratch-shared/edwinsut/tss_forcing_for_tamin/test_final/"
+output_folder = "/scratch-shared/edwinsut/tss_forcing_for_tamin/test_final_for_demo/"
 
 # tss output files (this will be relative to the output_folder)
 tss_daily_output_file = "forcing_daily.tss"
@@ -107,13 +107,31 @@ def main():
     # - start the calculation
     dynamic_framework.run()
     
-    #~ # TODO: reformat 10 day tss file
+    
+    #~ # reformat 10 day tss file
     #~ # - change directory to the output folder so that the tss file will be stored there
     #~ os.chdir(self.output_folder)
     #~ # - open 10 day tss file
     #~ file_10day_tss = open(tss_10day_output_file, "r")
     #~ file_10day_tss_content = file_10day_tss.readlines()
-    #~ # - 
+    #~ # - get number of stations
+    #~ number_of_stations = int(file_10day_tss_content[1].split("\n")[0])
+    #~ # - save the header
+    #~ header = file_10day_tss_content[0:number_of_stations + 2]
+    #~ # - time series values
+    #~ tss_complete = np.loadtxt(tss_10day_output_file, skiprows = number_of_stations + 2)
+    #~ # - tss selected
+    #~ first_column = tss_complete[:,1]
+    #~ tss_filtered = tss_complete[np.where(first_column >= 0.0)[0], :] 
+    #~ # - time series values in a formatted array
+    #~ arr = np.ndarray(tss_filtered.shape, dtype = object)
+    #~ arr[:,0] = range(1, tss_filtered.shape[0] + 1, 1)
+    #~ arr[:,1:] = tss_filtered[:,1:]
+    #~ # - write to a file
+    #~ file_10day_tss_formatted = open(tss_10day_output_file + "_formatted.tss", "w")
+    #~ for i in range(0, len(header)): file_10day_tss_formatted.write(header[i])
+    #~ for i in range(0, len(arr[:,0])): file_10day_tss_formatted.write(arr[i,:])
+    #~ file_10day_tss_formatted.close()
     
     
     
