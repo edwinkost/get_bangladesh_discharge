@@ -3,6 +3,7 @@
 
 import os
 import sys
+import shutil
 
 import time
 import datetime
@@ -22,50 +23,44 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
 
     def __init__(self, netcdf_input_file, \
                        areaMapFileName,\
-                       netcdf_input_clone_map_file, 
+                       netcdf_input_clone_map_file, \
                        output_folder, \
                        unit_conversion_factor, \
+                       unit_conversion_offset, \
                        modelTime, \
                        inputProjection, \
                        outputProjection, \
                        resample_method, \
-                       tss_output_file_name):
+                       tss_daily_output_file, \
+                       tss_10day_output_file, \
+                       ):
 
         DynamicModel.__init__(self)
         
+        # netcdf input file
+        self.netcdf_input_file = netcdf_input_file
+
         # clone maps
-        self.outputClone = areaMapFileName
         self.inputClone  = netcdf_input_clone_map_file
+        self.outputClone = areaMapFileName
         
         # time variable/object
         self.modelTime = modelTime
         
-        self.resample_method  = resample_method
-
-        # output folder 
-        self.output_folder = output_folder
-        try:
-            os.makedirs(self.output_folder)
-        except:
-            os.system('rm -r ' + self.output_folder +"/*")
-        
         # prepare temporary directory
+        logger.info('Preparing tmp directory.')
         self.tmpDir = self.output_folder + "/tmp/"
-        try:
-            os.makedirs(self.tmpDir)
-        except:
-            os.system('rm -r '+ tmpDir + "/*")
+        if os.path.exists(self.tmpDir): shutil.rmtree(self.tmpDir)
+        os.makedirs(self.tmpDir)
         
         # input and output projection/coordinate systems 
         self.inputProjection  =  inputProjection
         self.outputProjection = outputProjection
         
         # resample method
-
-        # netcdf input file
-        self.netcdf_input_file = netcdf_input_file
-
-        # get the properties of 
+        self.resample_method = resample_method
+        
+        # get the properties of output clone map (needed for resampling with gdalwarp)
         pcr.setclone(self.outputClone)
         self.cell_length  = pcr.clone().cellSize()
         self.x_min_output = pcr.clone().west()
@@ -73,25 +68,19 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         self.y_min_output = pcr.clone().north() - pcraster.clone().nrRows() * pcr.clone().cellSize()
         self.y_max_output = pcr.clone().north()
 
-        # pcraster area file
+        # pcraster area/class map
         self.area_class = pcr.readmap(areaMapFileName)
         # - landmask
         self.landmask = pcr.defined(self.area_class)
         self.landmask = pcr.ifthen(self.landmask, self.landmask)
 
-        # object for daily tss reporting
-        # - tss output file
-        self.tss_daily_file = tss_output_file_name + "_daily"
-        # - choose a point for each area as its representative
-        self.point_area_class = pcr.ifthen(self.areaorder(pcr.scalar(self.area_class), self.area_class) == self.area_class, self.area_class)
-        # - tss reporting object
-        self.tss_reporting = TimeoutputTimeseries(self.tss_daily_file, self, self.area_class, noHeader = False)       
-
-        # object for 10 day tss reporting
-        # - tss output file
-        self.tss_ten_day_file = tss_output_file_name + "_10days"
-        # - tss reporting object
-        self.tss_ten_day_reporting = TimeoutputTimeseries(self.tss_ten_day_file, self, self.area_class, noHeader = False)       
+        # objects for tss reporting
+        # - choose a point for each area/class as its station representative
+        self.point_area_class = pcr.ifthen(self.areaorder(pcr.scalar(self.area_class), self.area_class) == 1, self.area_class)
+        # - daily tss reporting object
+        self.tss_daily_reporting = TimeoutputTimeseries(tss_daily_output_file, self, self.area_class, noHeader = False)       
+        # - 10day tss reporting object
+        self.tss_10day_reporting = TimeoutputTimeseries(tss_10day_output_file, self, self.area_class, noHeader = False)       
 
 
     def initial(self): 
@@ -128,8 +117,8 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         bound_box = self.x_min_output + " " + self.y_min_output + " " + self.x_max_output + " " + self.y_max_output    
         cell_size = self.cell_length + " " + self.cell_length
         cmd = 'gdalwarp '+\
-              '-s_srs ' + inputProjection  +" "+\
-              '-t_srs ' + outputProjection +" "+\
+              '-s_srs ' + '"' + inputProjection  +'" '+\
+              '-t_srs ' + '"' + outputProjection +'" '+\
               '-te ' + bound_box + " " +\
               '-tr ' + cell_size + " " +\
               '-r '+ self.resample_method + " " +\
@@ -139,7 +128,7 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         print cmd ; os.system(cmd)
         # - convert it back to pcraster map
         tmp_reprj_map_file = self.tmpDir + "/" + "tmp_reprj_map.map"
-        cmd = 'gdal_translate ' + tmp_reprj_tif_file + " " + tmp_reprj_map_file
+        cmd = 'gdal_translate -of PCRaster' + tmp_reprj_tif_file + " " + tmp_reprj_map_file
         print cmd ; os.system(cmd)
         # - make sure that it has a valid mapattr
         cmd = 'mapattr -c ' + self.outputClone + " " + tmp_reprj_map_file
@@ -158,10 +147,11 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         # perform area operation
         logger.info("Performing area operation.")
         output_area_pcr = pcr.areaaverage(output_pcr, self.area_class)
+        pcr.aguila(output_pcr)
+        raw_input("Press Enter to continue...")
         
         # save it to a daily tss file
-        self.tss_reporting.sample(output_area_pcr)
-        
+        self.tss_daily_reporting.sample(output_area_pcr)
         
         # calculate 10 day average
         # - initiate/reset counter and accumulator
@@ -175,7 +165,7 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         if self.modelTime.day == 10 or self.modelTime.day == 20 or self.modelTime.isLastDayOfMonth():
              logger.info('Saving 10 day average value.')
              average_per_ten_days = self.cummulative_per_ten_days / self.day_counter
-             self.tss_ten_day_reporting(average_per_ten_days)
+             self.tss_10day_reporting(average_per_ten_days)
         
         # clean the temporary folder
         cmd = 'rm -r ' + self.tmpDir + "/*" 
