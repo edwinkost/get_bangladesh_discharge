@@ -80,6 +80,10 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         self.landmask = pcr.defined(self.area_class)
         self.landmask = pcr.ifthen(self.landmask, self.landmask)
 
+
+
+    def initial(self): 
+
         # objects for tss reporting
         # - choose a point for each area/class as its station representative
         self.point_area_class = pcr.nominal(pcr.ifthen(pcr.areaorder(pcr.scalar(self.area_class), self.area_class) == 1, self.area_class))
@@ -89,10 +93,6 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         self.tss_daily_reporting = TimeoutputTimeseries("test", self, self.area_class, noHeader = False)       
         # - 10day tss reporting object
         self.tss_10day_reporting = TimeoutputTimeseries(tss_10day_output_file, self, self.area_class, noHeader = False)       
-
-
-    def initial(self): 
-        pass
 
     def dynamic(self):
         
