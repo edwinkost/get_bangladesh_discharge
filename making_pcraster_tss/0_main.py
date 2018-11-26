@@ -31,6 +31,10 @@ netcdf_input_clone_map_file = "/home/edwinsut/github/edwinkost/get_bangladesh_di
 # start and end dates
 startDate = "1958-01-01"
 endDate   = "2001-12-31"
+# - testing
+startDate = "1990-01-01"
+endDate   = "2001-12-31"
+
 
 # unit conversion
 unit_conversion_factor = 86.4 * 1000.0
