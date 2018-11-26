@@ -47,6 +47,9 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         # time variable/object
         self.modelTime = modelTime
         
+        # output folder
+        self.output_folder = output_folder
+        
         # prepare temporary directory
         logger.info('Preparing tmp directory.')
         self.tmpDir = self.output_folder + "/tmp/"
