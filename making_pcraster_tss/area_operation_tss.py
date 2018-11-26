@@ -66,8 +66,6 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
             self.mapDir = self.output_folder + "/map/"
             if os.path.exists(self.mapDir): shutil.rmtree(self.mapDir)
             os.makedirs(self.mapDir)
-            # move to the mapDir (to ease self.report)
-            os.chdir(self.mapDir)
 
         # unit conversion variables
         self.unit_conversion_factor = unit_conversion_factor
@@ -209,6 +207,7 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
             #~ raw_input("Press Enter to continue...")
             if self.report_10day_pcr_files:
                 logger.info('Saving 10 day average value to pcraster file.')
+                os.chdir(self.mapDir)
                 self.report(average_per_ten_days, "dcd")
         else:
              average_per_ten_days = pcr.scalar(-9999.99)
@@ -218,6 +217,6 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         cmd = 'rm -r ' + self.tmpDir + "/*" 
         print cmd ; os.system(cmd)
         
-        # at the last time step, change directory to the output folder so that the tss file will be stored there
+        # change directory to the output folder so that the tss file will be stored there
         os.chdir(self.output_folder)
 
