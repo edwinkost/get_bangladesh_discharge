@@ -23,6 +23,7 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
 
     def __init__(self, netcdf_input_file, \
                        areaMapFileName,\
+                       areaPointMapFileName,\
                        netcdf_input_clone_map_file, \
                        output_folder, \
                        unit_conversion_factor, \
@@ -77,6 +78,15 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         self.landmask = pcr.defined(self.area_class)
         self.landmask = pcr.ifthen(self.landmask, self.landmask)
         
+        # - choose a point for each area/class as its station representative (needed for tss reporting)
+        if areaPointMapFileName == None:
+            logger.debug("Get stations/representatives for all classes")
+            self.point_area_class = pcr.nominal(pcr.ifthen(pcr.areaorder(pcr.scalar(self.area_class), self.area_class) == 1, self.area_class))
+            #~ pcr.aguila(self.point_area_class)
+            #~ raw_input("Press Enter to continue...")
+        self.point_area_class = pcr.readmap(areaPointMapFileName)
+        self.point_area_class = pcr.ifthen(self.landmask, self.point_area_class)    
+        
         # output tss file
         self.tss_daily_output_file = tss_daily_output_file
         self.tss_10day_output_file = tss_10day_output_file
@@ -85,13 +95,6 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
     def initial(self): 
 
         # objects for tss reporting
-        # - choose a point for each area/class as its station representative
-        logger.debug("Get stations/representatives for all classes")
-        self.point_area_class = pcr.nominal(pcr.ifthen(pcr.areaorder(pcr.scalar(self.area_class), self.area_class) == 1, self.area_class))
-        #
-        #~ pcr.aguila(self.point_area_class)
-        #~ raw_input("Press Enter to continue...")
-        #
         # - daily tss reporting object
         self.tss_daily_reporting = TimeoutputTimeseries(self.tss_daily_output_file, self, self.area_class, noHeader = False)       
         # - 10day tss reporting object
@@ -141,7 +144,7 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         logger.debug(cmd); os.system(cmd)
         # - convert it back to pcraster map
         tmp_reprj_map_file = self.tmpDir + "/" + "tmp_reprj_map.map"
-        cmd = 'gdal_translate -of PCRaster' + tmp_reprj_tif_file + " " + tmp_reprj_map_file
+        cmd = 'gdal_translate -of PCRaster ' + tmp_reprj_tif_file + " " + tmp_reprj_map_file
         logger.debug(cmd); os.system(cmd)
         # - make sure that it has a valid mapattr
         cmd = 'mapattr -c ' + self.outputClone + " " + tmp_reprj_map_file

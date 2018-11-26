@@ -49,6 +49,8 @@ tss_10day_output_file = output_folder + "/" + "forcing_10day.tss"
 # catchment/class pcraster map
 # - the output clone will be based on this file
 areaMapFileName = "/home/edwinsut/github/edwinkost/get_bangladesh_discharge/making_pcraster_tss/files_from_tamim/catchment_BD.map"
+# - station/point map corresponding to areaMapFileName
+areaPointMapFileName = "/home/edwinsut/github/edwinkost/get_bangladesh_discharge/making_pcraster_tss/files_from_tamim/catchment_BD_point.map"
 
 # input and output projection system (GDAL/PRJ format)
 inputProjection   = "EPSG:4326"
@@ -80,7 +82,8 @@ def main():
     
     # calculation model/framework
     calculationModel = AreaOperationNetcdfToPCRasterTSS(netcdf_input_file = netcdf_input_file, \
-                                                        areaMapFileName   = areaMapFileName, \
+                                                        areaMapFileName      = areaMapFileName, \
+                                                        areaPointMapFileName = areaPointMapFileName, \
                                                         netcdf_input_clone_map_file = netcdf_input_clone_map_file, \
                                                         output_folder = output_folder, \
                                                         unit_conversion_factor = unit_conversion_factor, \
