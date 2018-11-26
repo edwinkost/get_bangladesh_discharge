@@ -57,6 +57,10 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         if os.path.exists(self.tmpDir): shutil.rmtree(self.tmpDir)
         os.makedirs(self.tmpDir)
         
+        # unit conversion variables
+        self.unit_conversion_factor = unit_conversion_factor
+        self.unit_conversion_offset = unit_conversion_offset
+        
         # input and output projection/coordinate systems 
         self.inputProjection  =  inputProjection
         self.outputProjection = outputProjection
@@ -153,13 +157,15 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         
         
         # read the re-projected file
+        logger.info("Read the re-projected file, including unit conversion/correction.")
         # - set the clone to the output clone
         pcr.setclone(self.outputClone)
         output_pcr = pcr.readmap(tmp_reprj_map_file)
-        # - unit conversion factor
-        output_pcr = output_pcr * self.unit_conversion_factor
+        # - unit conversion
+        output_pcr = output_pcr * self.unit_conversion_factor + self.unit_conversion_offset
         pcr.aguila(output_pcr)
         raw_input("Press Enter to continue...")
+        
         
         # perform area operation
         logger.info("Performing area operation.")
