@@ -42,9 +42,9 @@ unit_conversion_offset = 0.0
 # output folder
 output_folder = "/scratch-shared/edwinsut/tss_forcing_for_tamin/test/"
 
-# tss output files
-tss_daily_output_file = output_folder + "/" + "forcing_daily"
-tss_10day_output_file = output_folder + "/" + "forcing_decad"
+# tss output files (this will be relative to the output_folder)
+tss_daily_output_file = "forcing_daily.tss"
+tss_10day_output_file = "forcing_decad.tss"
 
 # catchment/class pcraster map
 # - the output clone will be based on this file
@@ -95,8 +95,8 @@ def main():
                                                         tss_daily_output_file = tss_daily_output_file, \
                                                         tss_10day_output_file = tss_10day_output_file \
                                                         )
-    number_of_time_steps = modelTime.nrOfTimeSteps
-    #~ number_of_time_steps = 100
+    #~ number_of_time_steps = modelTime.nrOfTimeSteps
+    number_of_time_steps = 100
     dynamic_framework = DynamicFramework(calculationModel, number_of_time_steps)
     dynamic_framework.setQuiet(True)
     # - start the calculation
