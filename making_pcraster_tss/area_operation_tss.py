@@ -52,7 +52,7 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         self.output_folder = output_folder
         
         # prepare temporary directory
-        logger.info('Preparing tmp directory.')
+        logger.debug('Preparing tmp directory.')
         self.tmpDir = self.output_folder + "/tmp/"
         if os.path.exists(self.tmpDir): shutil.rmtree(self.tmpDir)
         os.makedirs(self.tmpDir)
@@ -80,12 +80,13 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         
         # - choose a point for each area/class as its station representative (needed for tss reporting)
         if areaPointMapFileName == None:
-            logger.debug("Get stations/representatives for all classes")
+            logger.info("Get stations/representatives for all classes")
             self.point_area_class = pcr.nominal(pcr.ifthen(pcr.areaorder(pcr.scalar(self.area_class), self.area_class) == 1, self.area_class))
             #~ pcr.aguila(self.point_area_class)
             #~ raw_input("Press Enter to continue...")
-        self.point_area_class = pcr.readmap(areaPointMapFileName)
-        self.point_area_class = pcr.ifthen(self.landmask, self.point_area_class)    
+        else:
+            self.point_area_class = pcr.readmap(areaPointMapFileName)
+            self.point_area_class = pcr.ifthen(self.landmask, self.point_area_class)    
         
         # output tss file
         self.tss_daily_output_file = tss_daily_output_file
