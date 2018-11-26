@@ -111,6 +111,8 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         
         # re-calculate current model time using current pcraster timestep value
         self.modelTime.update(self.currentTimeStep())
+        msg = "Processing the date " + self.modelTime.fulldate
+        logger.info("Reading netcdf file.")
 
         # read netcdf file
         logger.info("Reading netcdf file.")
