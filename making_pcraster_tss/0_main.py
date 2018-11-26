@@ -107,7 +107,16 @@ def main():
     # - start the calculation
     dynamic_framework.run()
     
-    # TODO: reformat 10 day tss file
+    #~ # TODO: reformat 10 day tss file
+    #~ # - change directory to the output folder so that the tss file will be stored there
+    #~ os.chdir(self.output_folder)
+    #~ # - open 10 day tss file
+    #~ file_10day_tss = open(tss_10day_output_file, "r")
+    #~ file_10day_tss_content = file_10day_tss.readlines()
+    #~ # - 
+    
+    
+    
 
 if __name__ == '__main__':
     sys.exit(main())

@@ -207,8 +207,10 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
             #~ raw_input("Press Enter to continue...")
             if self.report_10day_pcr_files:
                 logger.info('Saving 10 day average value to pcraster file.')
+                cwd = os.getcwd()
                 os.chdir(self.mapDir)
                 self.report(average_per_ten_days, "dcd")
+                os.chdir(cwd)
         else:
              average_per_ten_days = pcr.scalar(-9999.99)
         self.tss_10day_reporting.sample(average_per_ten_days)
