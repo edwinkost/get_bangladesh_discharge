@@ -8,11 +8,14 @@ import shutil
 import time
 import datetime
 
+import numpy as np
+
 import pcraster as pcr
 from pcraster.framework import DynamicModel
 from pcraster.framework import TimeoutputTimeseries
 
-import numpy as np
+# time object
+from currTimeStep import ModelTime
 
 import virtualOS as vos
 
