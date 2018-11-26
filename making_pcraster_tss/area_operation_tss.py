@@ -63,13 +63,13 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         # resample method
         self.resample_method = resample_method
         
-        # get the properties of output clone map (needed for resampling with gdalwarp)
+        # get the properties of output clone map (in string, needed for resampling with gdalwarp command)
         pcr.setclone(self.outputClone)
-        self.cell_length  = pcr.clone().cellSize()
-        self.x_min_output = pcr.clone().west()
-        self.x_max_output = pcr.clone().west()  + pcr.clone().nrCols() * pcr.clone().cellSize()
-        self.y_min_output = pcr.clone().north() - pcr.clone().nrRows() * pcr.clone().cellSize()
-        self.y_max_output = pcr.clone().north()
+        self.cell_length  = str(pcr.clone().cellSize()                                             )
+        self.x_min_output = str(pcr.clone().west()                                                 )
+        self.x_max_output = str(pcr.clone().west()  + pcr.clone().nrCols() * pcr.clone().cellSize())
+        self.y_min_output = str(pcr.clone().north() - pcr.clone().nrRows() * pcr.clone().cellSize())
+        self.y_max_output = str(pcr.clone().north()                                                )
 
         # pcraster area/class map
         self.area_class = pcr.readmap(areaMapFileName)
@@ -86,6 +86,7 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
 
         # objects for tss reporting
         # - choose a point for each area/class as its station representative
+        logger.debug("Get stations/representatives for each class")
         self.point_area_class = pcr.nominal(pcr.ifthen(pcr.areaorder(pcr.scalar(self.area_class), self.area_class) == 1, self.area_class))
         #
         #~ pcr.aguila(self.point_area_class)
