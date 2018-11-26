@@ -182,7 +182,7 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         # calculate 10 day average
         # - initiate/reset counter and accumulator
         if self.modelTime.day == 1 or self.modelTime.day == 11 or self.modelTime.day == 21:
-            self.day_counter = 0.0
+            self.day_counter = pcr.scalar(0.0)
             self.cummulative_per_ten_days = pcr.scalar(0.0)
             self.average_per_ten_days = pcr.scalar(0.0)
         # - accumulating
