@@ -1,0 +1,36 @@
+<PAMDataset>
+  <Metadata>
+    <MDI key="lat#axis">Y</MDI>
+    <MDI key="lat#long_name">latitude</MDI>
+    <MDI key="lat#standard_name">latitude</MDI>
+    <MDI key="lat#units">degrees_north</MDI>
+    <MDI key="lon#axis">X</MDI>
+    <MDI key="lon#long_name">longitude</MDI>
+    <MDI key="lon#standard_name">longitude</MDI>
+    <MDI key="lon#units">degrees_east</MDI>
+    <MDI key="NC_GLOBAL#CDI">Climate Data Interface version 1.6.0 (http://code.zmaw.de/projects/cdi)</MDI>
+    <MDI key="NC_GLOBAL#CDO">Climate Data Operators version 1.6.0 (http://code.zmaw.de/projects/cdo)</MDI>
+    <MDI key="NC_GLOBAL#Conventions">CF-1.0</MDI>
+    <MDI key="NC_GLOBAL#history">Mon Nov 26 04:20:06 2018: cdo seltimestep,160 /scratch-shared/edwinswt/from_edwin/data_for_tamim/forcing/netcdf/historical_baseline/watch/pr_watch_1958-2001.nc test.nc
+Tue Jun 26 16:58:01 2018: cdo -L -f nc4 -z zip -sellonlatbox,87,95,20,28 /projects/0/dfguu/data/hydroworld/forcing/WATCH/pr_total_gpcc_watch_1958-2001.nc4 pr_watch_1958-2001.nc
+Fri Aug 01 14:43:25 2014: cdo -z zip add pr_gpcc_watch_1958-2001.nc4 prsn_gpcc_watch_1958-2001.nc4 pr_total_gpcc_watch_1958-2001.nc4
+Wed Jun 19 13:41:01 2013: cdo-1.6.0 -s cat Snowf_daily_WFD_GPCC_allTS.1958.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1959.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1960.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1961.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1962.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1963.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1964.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1965.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1966.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1967.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1968.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1969.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1970.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1971.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1972.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1973.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1974.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1975.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1976.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1977.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1978.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1979.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1980.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1981.nc.tmp2 Snowf_daily_WFD_GPCC_allTS.1982.nc.tmp2</MDI>
+    <MDI key="NETCDF_DIM_EXTRA">{time}</MDI>
+    <MDI key="NETCDF_DIM_time_DEF">{1,6}</MDI>
+    <MDI key="NETCDF_DIM_time_VALUES">35953</MDI>
+    <MDI key="pr#code">1</MDI>
+    <MDI key="pr#_FillValue">1e+20</MDI>
+    <MDI key="time#calendar">proleptic_gregorian</MDI>
+    <MDI key="time#standard_name">time</MDI>
+    <MDI key="time#units">days since 1860-01-01 00:00:00</MDI>
+  </Metadata>
+  <PAMRasterBand band="1">
+    <NoDataValue le_hex_equiv="000000801DAF1544">1.00000002004088E+20</NoDataValue>
+    <Metadata>
+      <MDI key="code">1</MDI>
+      <MDI key="NETCDF_DIM_time">35953</MDI>
+      <MDI key="NETCDF_VARNAME">pr</MDI>
+      <MDI key="_FillValue">1e+20</MDI>
+    </Metadata>
+  </PAMRasterBand>
+</PAMDataset>
