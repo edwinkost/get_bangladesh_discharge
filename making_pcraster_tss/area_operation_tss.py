@@ -102,8 +102,8 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
 
         # objects for tss reporting
         logger.debug("Preparing tss files.")
-        # - daily tss reporting object
-        self.tss_daily_reporting = TimeoutputTimeseries(self.tss_daily_output_file, self, self.area_class, noHeader = False)       
+        #~ # - daily tss reporting object
+        #~ self.tss_daily_reporting = TimeoutputTimeseries(self.tss_daily_output_file, self, self.area_class, noHeader = False)       
         # - 10day tss reporting object
         self.tss_tenday_reporting = TimeoutputTimeseries(self.tss_10day_output_file, self, self.area_class, noHeader = False)       
 
@@ -177,7 +177,7 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         
         # save it to a daily tss file
         logger.info("Saving daily value to a tss file.")
-        self.tss_daily_reporting.sample(output_area_pcr)
+        #~ self.tss_daily_reporting.sample(output_area_pcr)
         
         # calculate 10 day average
         # - initiate/reset counter and accumulator
