@@ -78,7 +78,7 @@ def main():
     modelTime = ModelTime() # timeStep info: year, month, day, doy, hour, etc
     modelTime.getStartEndTimeSteps(startDate, endDate)
     
-    print modelTime.nrOfTimeSteps
+    #~ print modelTime.nrOfTimeSteps
     
     # calculation model/framework
     calculationModel = AreaOperationNetcdfToPCRasterTSS(netcdf_input_file = netcdf_input_file, \
@@ -100,7 +100,7 @@ def main():
     # - start the calculation
     dynamic_framework.run()
     
-    # reformat 10 day tss file
+    # TODO: reformat 10 day tss file
 
 if __name__ == '__main__':
     sys.exit(main())
