@@ -100,8 +100,8 @@ def main():
                                                         tss_10day_output_file = tss_10day_output_file, \
                                                         report_10day_pcr_files = True
                                                         )
-    #~ number_of_time_steps = modelTime.nrOfTimeSteps
-    number_of_time_steps = 100
+    number_of_time_steps = modelTime.nrOfTimeSteps
+    #~ number_of_time_steps = 100
     dynamic_framework = DynamicFramework(calculationModel, number_of_time_steps)
     dynamic_framework.setQuiet(True)
     # - start the calculation
