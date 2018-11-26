@@ -40,7 +40,7 @@ unit_conversion_offset = 0.0
 # - The OUTPUT units should be mm.day-1 for pr, degree Celcius for tas, and mm.day-1 for epot. 
 
 # output folder
-output_folder = "/scratch-shared/edwinsut/tss_forcing_for_tamin/test/"
+output_folder = "/scratch-shared/edwinsut/tss_forcing_for_tamin/test_final/"
 
 # tss output files (this will be relative to the output_folder)
 tss_daily_output_file = "forcing_daily.tss"
