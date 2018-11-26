@@ -209,7 +209,7 @@ def netcdf2PCRobjClone(ncFile,varName,dateInput,\
     
     if varName == "automatic":
         nc_dims = [dim for dim in f.dimensions]
-        nc_vars = [var for var in ncfid.variables]
+        nc_vars = [var for var in f.variables]
         for var in nc_vars:                   
             if var not in nc_dims: varName = var
         logger.debug('reading variable: '+str(varName)+' from the file: '+str(ncFile))

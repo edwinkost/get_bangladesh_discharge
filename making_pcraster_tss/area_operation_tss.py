@@ -123,7 +123,7 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         # - convert it to tif
         tmp_input_tif_file = self.tmpDir + "/" + "tmp_input_pcr.tif"
         cmd = 'gdal_translate ' + tmp_input_pcr_file + " " + tmp_input_tif_file
-        print cmd ; os.system(cmd)
+        logger.debug(cmd); os.system(cmd)
         # - re-projection to the outputProjection 
         tmp_reprj_tif_file = self.tmpDir + "/" + "tmp_reprj_tif.tif"
         bound_box = self.x_min_output + " " + self.y_min_output + " " + self.x_max_output + " " + self.y_max_output    
@@ -137,14 +137,14 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
               '-srcnodata -3.4028234663852886e+38 -dstnodata -3.4028234663852886e+38 '+\
               tmp_input_tif_file + " "+\
               tmp_reprj_tif_file
-        print cmd ; os.system(cmd)
+        logger.debug(cmd); os.system(cmd)
         # - convert it back to pcraster map
         tmp_reprj_map_file = self.tmpDir + "/" + "tmp_reprj_map.map"
         cmd = 'gdal_translate -of PCRaster' + tmp_reprj_tif_file + " " + tmp_reprj_map_file
-        print cmd ; os.system(cmd)
+        logger.debug(cmd); os.system(cmd)
         # - make sure that it has a valid mapattr
         cmd = 'mapattr -c ' + self.outputClone + " " + tmp_reprj_map_file
-        print cmd ; os.system(cmd)
+        logger.debug(cmd); os.system(cmd)
         
         
         # read the re-projected file
