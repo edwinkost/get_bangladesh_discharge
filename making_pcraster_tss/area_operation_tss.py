@@ -35,6 +35,7 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
                        resample_method, \
                        tss_daily_output_file, \
                        tss_10day_output_file, \
+                       report_10day_pcr_files = False
                        ):
 
         DynamicModel.__init__(self)
@@ -58,6 +59,16 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         if os.path.exists(self.tmpDir): shutil.rmtree(self.tmpDir)
         os.makedirs(self.tmpDir)
         
+        # prepare maps directory (to store 10-day pcraster files )
+        self.report_10day_pcr_files = report_10day_pcr_files
+        if self.report_10day_pcr_files:
+            logger.info('Preparing map directory (for saving 10 day pcraster files).')
+            self.mapDir = self.output_folder + "/map/"
+            if os.path.exists(self.mapDir): shutil.rmtree(self.mapDir)
+            os.makedirs(self.mapDir)
+            # move to the mapDir (to ease self.report)
+            os.chdir(self.mapDir)
+
         # unit conversion variables
         self.unit_conversion_factor = unit_conversion_factor
         self.unit_conversion_offset = unit_conversion_offset
@@ -111,8 +122,8 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         
         # re-calculate current model time using current pcraster timestep value
         self.modelTime.update(self.currentTimeStep())
-        msg = "Processing the date " + self.modelTime.fulldate
-        logger.info("Reading netcdf file.")
+        msg = "\n\n\n Processing the date " + self.modelTime.fulldate + "\n\n\n"
+        logger.info(msg)
 
         # read netcdf file
         logger.info("Reading netcdf file.")
@@ -196,6 +207,8 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
              average_per_ten_days = self.cummulative_per_ten_days / pcr.ifthen(self.landmask, self.day_counter)
              #~ pcr.aguila(average_per_ten_days)
              #~ raw_input("Press Enter to continue...")
+             if self.report_10day_pcr_files:
+             logger.info('Saving 10 day average value to pcraster file.')
         else:
              average_per_ten_days = pcr.scalar(-9999.99)
         self.tss_10day_reporting.sample(average_per_ten_days)

@@ -97,7 +97,8 @@ def main():
                                                         outputProjection = outputProjection, \
                                                         resample_method  = resample_method, \
                                                         tss_daily_output_file = tss_daily_output_file, \
-                                                        tss_10day_output_file = tss_10day_output_file \
+                                                        tss_10day_output_file = tss_10day_output_file, \
+                                                        report_10day_pcr_files = True
                                                         )
     #~ number_of_time_steps = modelTime.nrOfTimeSteps
     number_of_time_steps = 100
