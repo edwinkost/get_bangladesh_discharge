@@ -67,8 +67,8 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         pcr.setclone(self.outputClone)
         self.cell_length  = pcr.clone().cellSize()
         self.x_min_output = pcr.clone().west()
-        self.x_max_output = pcr.clone().west()  + pcraster.clone().nrCols() * pcr.clone().cellSize()
-        self.y_min_output = pcr.clone().north() - pcraster.clone().nrRows() * pcr.clone().cellSize()
+        self.x_max_output = pcr.clone().west()  + pcr.clone().nrCols() * pcr.clone().cellSize()
+        self.y_min_output = pcr.clone().north() - pcr.clone().nrRows() * pcr.clone().cellSize()
         self.y_max_output = pcr.clone().north()
 
         # pcraster area/class map
