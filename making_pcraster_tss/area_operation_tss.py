@@ -189,9 +189,9 @@ class AreaOperationNetcdfToPCRasterTSS(DynamicModel):
         self.cummulative_per_ten_days = self.cummulative_per_ten_days + output_area_pcr
         # - calculate 10 day average and reporting
         if self.modelTime.day == 10 or self.modelTime.day == 20 or self.modelTime.isLastDayOfMonth():
-             logger.info('Saving 10 day average value  to a tss file.')
-             self.average_per_ten_days = self.cummulative_per_ten_days / self.day_counter
-             self.tss_10day_reporting(self.average_per_ten_days)
+             logger.info('Saving 10 day average value to a tss file.')
+             average_per_ten_days = self.cummulative_per_ten_days / self.day_counter
+             self.tss_10day_reporting(average_per_ten_days)
         
         # clean the temporary folder
         cmd = 'rm -r ' + self.tmpDir + "/*" 
