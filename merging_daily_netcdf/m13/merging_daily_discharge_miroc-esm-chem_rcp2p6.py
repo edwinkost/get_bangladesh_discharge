@@ -47,7 +47,7 @@ for i in range(0, len(start_years)-1):
 end_years.append(2099)
 
 # output folder
-/projects/0/dfguu2/scratch/edwin/daily_discharge_aqueduct_flood_analyzer/m13/miroc-esm-chem/rcp2p6/"
+output_folder = "/projects/0/dfguu2/scratch/edwin/daily_discharge_aqueduct_flood_analyzer/m13/miroc-esm-chem/rcp2p6/"
 # - make and go to the output folder
 #~ os.system('rm -r ' + output_folder + "/*")
 try:
