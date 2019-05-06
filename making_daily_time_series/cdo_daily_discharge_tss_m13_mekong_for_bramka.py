@@ -4,7 +4,7 @@
 import os
 
 # main output folder
-main_output_folder = "/projects/0/dfguu2/scratch/edwin/daily_discharge_aqueduct_flood_analyzer/m13/txt/"
+main_output_folder = "/projects/0/dfguu2/scratch/edwin/daily_discharge_aqueduct_flood_analyzer/m13/txt/version_20190506/"
 
 # main input folder
 main_input_folder = "/projects/0/dfguu2/scratch/edwin/daily_discharge_aqueduct_flood_analyzer/m13/netcdf/"
